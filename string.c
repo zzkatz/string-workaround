@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+#include <string.h>
+
+#include <stdint.h>
+#include <stdbool.h>
+
+
+typedef struct {
+    char * s;
+    size_t str_size;
+}
+
+String;
+String new_str(const char * initial_str) {
+    String  new_str;
+    if(
+    initial_str==NULL) {
+        new_str.s = NULL;
+        new_str.str_size = 0;
+        return new_str;
+    }
+    new_str.str_size = strlen(initial_str);
+    new_str.s = (char *)
+    malloc(new_str.str_size + 1);
+    if(new_str.s!=NULL) {
+        strcpy(new_str.s, initial_str);
+    }
+    return new_str;
+}
+
+void free_string(String * str) {
+    if(str!=NULL) {
+        free(str->s);
+        str->s = NULL;
+    }
+    str->str_size = 0;
+}
+
+
